@@ -2,6 +2,7 @@ version: "3.8"
 services:
    sample-webserver:
       container_name: "sample-webserver"
+      hostname: sample-webserver
       restart: always
       networks:
          - "sample-react"
@@ -10,8 +11,9 @@ services:
       build:
          context: "$PWD/web"
       image: react-sample
-   sample-webserver_nginx:
+   sample-webserver-nginx:
       container_name: "sample-webserver_nginx"
+      hostname: sample-webserver-nginx
       volumes:
         - "$PWD/nginx/conf:/etc/nginx"
         - "$PWD/nginx/certs:/etc/ssl/private"
@@ -21,15 +23,19 @@ services:
       ports:
          - "80:80"
          - "443:443"
-      image: nginx:stable-alpine
-   sample-webserver_db:
-        image: mongo
-        restart: always
+      build:
+         context: "$PWD/nginx"
+      image: react-sample_nginx
+      command: [nginx-debug, '-g', 'daemon off;']
+   sample-webserver-db:
         container_name: "sample-webserver_db"
+        hostname: sample-webserver-db
         volumes:
             - "$PWD/db:/data/db"
+        restart: always
         ports:
             - "27017:27017"
+        image: mongo
         command: "mongod --noauth --smallfiles"
         networks:
             - "sample-react"
