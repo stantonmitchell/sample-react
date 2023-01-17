@@ -4,7 +4,7 @@ Simply a sample React app deployment.
 
 ## How to use
 
-1. Clone the repo: `git clone git@github.com:stantonmitchell/sample-react.git`
+1. Clone the repo: `git clone git@github.com:mitchs-dev/sample-react.git`
 1. Change to the repository directory: `cd sample-react`
 1. Deploy the app: `docker-compose up -d`
 1. Wait for the image download and deployment to finish.
