@@ -1,5 +1,9 @@
 # Sample React on Docker
 
+## DISCLAIMER
+
+This repository is not regularly maintined and should be used at your own discretion. 
+
 Simply a sample React app deployment.
 
 ## How to use
